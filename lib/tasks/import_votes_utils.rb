@@ -4,14 +4,11 @@ class VoteLine
   end
 
   def valid?
-
+    return false if vote_line[0] != 'VOTE'
+    true
   end
 
-  def clean
+  private
 
-  end
-
-  def save
-
-  end
+  attr_reader :vote_line
 end
