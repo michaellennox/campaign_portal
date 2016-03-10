@@ -8,6 +8,12 @@ class VoteLine
     true
   end
 
+  def save
+    campaign = Campaign.first_or_create(ref: vote_line[2][9..-1])
+    choice = campaign.choices.first_or_create(name: vote_line[4][7..-1])
+    choice.votes.create(is_valid: valid_vote?, time_cast: Time.at(vote_line[1].to_i))
+  end
+
   private
 
   attr_reader :vote_line
@@ -26,5 +32,9 @@ class VoteLine
 
   def valid_choice?
     vote_line[4][0, 7] == 'Choice:' && vote_line[4].length > 7
+  end
+
+  def valid_vote?
+    vote_line[3][9..-1] == 'during'
   end
 end

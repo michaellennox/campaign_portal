@@ -43,7 +43,13 @@ describe VoteLine do
 
   describe '#save' do
     it 'creates the database objects related to that specific vote' do
-      
+      vote_line.save
+      expect(Campaign.count).to eq 1
+      expect(Campaign.first.ref).to eq 'ssss_uk_02B'
+      expect(Choice.count).to eq 1
+      expect(Choice.first.name).to eq 'Matthew'
+      expect(Vote.count).to eq 1
+      expect(Vote.first.is_valid).to be true
     end
   end
 end
