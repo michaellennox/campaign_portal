@@ -40,4 +40,10 @@ describe VoteLine do
       expect(invalid_vote_line.valid?).to be false
     end
   end
+
+  describe '#save' do
+    it 'creates the database objects related to that specific vote' do
+      
+    end
+  end
 end
