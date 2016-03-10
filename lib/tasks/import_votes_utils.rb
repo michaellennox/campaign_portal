@@ -9,8 +9,8 @@ class VoteLine
   end
 
   def save
-    campaign = Campaign.first_or_create(ref: vote_line[2][9..-1])
-    choice = campaign.choices.first_or_create(name: vote_line[4][7..-1])
+    campaign = Campaign.where(ref: vote_line[2][9..-1]).first_or_create
+    choice = campaign.choices.where(name: vote_line[4][7..-1]).first_or_create
     choice.votes.create(is_valid: valid_vote?, time_cast: Time.at(vote_line[1].to_i))
   end
 
