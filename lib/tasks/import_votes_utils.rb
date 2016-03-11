@@ -9,26 +9,14 @@ class VoteLine
   end
 
   def save
-    campaign = Campaign.where(ref: vote_line[2][9..-1]).first_or_create
-    choice = campaign.choices.where(name: vote_line[4][7..-1]).first_or_create
-    choice.votes.create(is_valid: valid_vote?, time_cast: Time.at(vote_line[1].to_i))
+    campaign = Campaign.where(ref: campaign_ref).first_or_create
+    choice = campaign.choices.where(name: choice_name).first_or_create
+    choice.votes.create(is_valid: valid_vote?, time_cast: time_cast)
   end
 
   private
 
   attr_reader :vote_line
-
-  def vote_key
-    vote_line[0]
-  end
-
-  def campaign_key
-    vote_line[2][0, 9]
-  end
-
-  def validity_key
-    vote_line[3][0, 9]
-  end
 
   def valid_vote_key?
     vote_key == 'VOTE'
@@ -43,10 +31,38 @@ class VoteLine
   end
 
   def valid_choice?
-    vote_line[4][0, 7] == 'Choice:' && vote_line[4].length > 7
+    choice_key == 'Choice:' && choice_name != ''
   end
 
   def valid_vote?
     vote_line[3][9..-1] == 'during'
+  end
+
+  def vote_key
+    vote_line[0]
+  end
+
+  def campaign_key
+    vote_line[2][0, 9]
+  end
+
+  def campaign_ref
+    vote_line[2][9..-1]
+  end
+
+  def choice_key
+    vote_line[4][0, 7]
+  end
+
+  def choice_name
+    vote_line[4][7..-1]
+  end
+
+  def validity_key
+    vote_line[3][0, 9]
+  end
+
+  def time_cast
+    Time.at(vote_line[1].to_i)
   end
 end
