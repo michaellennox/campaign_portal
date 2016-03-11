@@ -15,7 +15,7 @@ RSpec.feature 'Viewing Campaigns and Results' do
     end
 
     scenario 'Then the user should see a list of the campaigns which have data' do
-      within("#campaigns") do
+      within("ul#campaigns") do
         expect(page).to have_link 'ssss_uk_01A'
         expect(page).to have_link 'a_n_other'
         expect(page).to have_link 'ssss_uk_01B'

@@ -1,0 +1,10 @@
+<h2>Campaigns</h2>
+<% if @campaigns.any? %>
+  <ul id='campaigns'>
+    <% @campaigns.each do |campaign| %>
+      <li>
+        <%= link_to campaign.ref, campaign_path(campaign)%>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
