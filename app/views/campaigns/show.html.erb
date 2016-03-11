@@ -1,2 +1,10 @@
-<h1>Campaigns#show</h1>
-<p>Find me in app/views/campaigns/show.html.erb</p>
+<h2><%= @campaign.ref %></h2>
+<ul id="choices">
+  <% @campaign.choices.each do |choice| %>
+    <li>
+      <h3><%= choice.name %></h3>
+      <p>Votes: <%= choice.counted_votes %></p>
+    </li>
+  <% end %>
+</ul>
+<p id="uncounted-votes">Uncounted Votes: <%= @campaign.invalid_votes %></p>

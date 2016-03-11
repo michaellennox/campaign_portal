@@ -18,16 +18,28 @@ class VoteLine
 
   attr_reader :vote_line
 
+  def vote_key
+    vote_line[0]
+  end
+
+  def campaign_key
+    vote_line[2][0, 9]
+  end
+
+  def validity_key
+    vote_line[3][0, 9]
+  end
+
   def valid_vote_key?
-    vote_line[0] == 'VOTE'
+    vote_key == 'VOTE'
   end
 
   def valid_campaign?
-    vote_line[2][0, 9] == 'Campaign:'
+    campaign_key == 'Campaign:'
   end
 
   def valid_validity?
-    vote_line[3][0, 9] == 'Validity:'
+    validity_key == 'Validity:'
   end
 
   def valid_choice?

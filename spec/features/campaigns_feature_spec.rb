@@ -30,7 +30,7 @@ RSpec.feature 'Viewing Campaigns and Results' do
       end
 
       scenario 'Then the user should see the list of candidates, scores and uncounted messages' do
-        within('ul#candidates') do
+        within('ul#choices') do
           within('li:first-child') do
             expect(page).to have_content 'Leon'
             expect(page).to have_content 'Votes: 1'
