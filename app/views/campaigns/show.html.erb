@@ -1,10 +1,12 @@
-<h2><%= @campaign.ref %></h2>
-<ul id="choices">
+<h2>Campaign: <%= @campaign.ref %></h2>
+<ul id="choices" class="list-group">
   <% @campaign.choices.each do |choice| %>
-    <li>
+    <li class="list-group-item col-md-3">
       <h3><%= choice.name %></h3>
       <p>Votes: <%= choice.counted_votes %></p>
     </li>
   <% end %>
 </ul>
-<p id="uncounted-votes">Uncounted Votes: <%= @campaign.invalid_votes %></p>
+<div class="col-md-12">
+  <h3 id="uncounted-votes">Uncounted Votes: <%= @campaign.invalid_votes %></h3>
+</div>

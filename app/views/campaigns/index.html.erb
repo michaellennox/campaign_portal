@@ -1,8 +1,8 @@
 <h2>Campaigns</h2>
 <% if @campaigns.any? %>
-  <ul id="campaigns">
+  <ul id="campaigns" class="list-group">
     <% @campaigns.each do |campaign| %>
-      <li>
+      <li class="list-group-item">
         <%= link_to campaign.ref, campaign_path(campaign)%>
       </li>
     <% end %>
